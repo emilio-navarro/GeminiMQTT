@@ -1,0 +1,379 @@
+package life.munay.mqtt.repositories
+
+import android.content.Context
+import android.os.Build
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
+import com.hivemq.client.mqtt.MqttClient
+import com.hivemq.client.mqtt.datatypes.MqttQos
+import com.hivemq.client.mqtt.mqtt3.Mqtt3AsyncClient
+import com.hivemq.client.mqtt.mqtt3.Mqtt3Client
+import com.hivemq.client.mqtt.mqtt3.message.connect.connack.Mqtt3ConnAck
+import com.hivemq.client.mqtt.mqtt3.message.publish.Mqtt3Publish
+import life.munay.mqtt.models.MqttConnectionConfig
+import life.munay.mqtt.models.MqttConnectionState
+import life.munay.mqtt.models.MqttMessage
+import timber.log.Timber
+import java.nio.charset.StandardCharsets
+import java.util.UUID
+import javax.inject.Inject
+import javax.inject.Singleton
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+
+@Singleton
+class MqttRepositoryImpl @Inject constructor(
+    @ApplicationContext private val context: Context
+) : MqttRepository {
+
+    private val repositoryScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+    private var mqttClient: MqttAndroidClient? = null
+    private var currentConfig: MqttConnectionConfig? = null
+
+    // State flows
+    private val _connectionState = MutableStateFlow(MqttConnectionState.DISCONNECTED)
+    override val connectionState: Flow<MqttConnectionState> = _connectionState.asStateFlow()
+
+    // Shared flow for MQTT messages (events, not state)
+    private val _incomingMessages = MutableSharedFlow<MqttMessage>(
+        replay = 0, // Don't replay old messages to new collectors
+        extraBufferCapacity = 64 // Buffer up to 64 messages if collector is slow
+    )
+    override val incomingMessages: Flow<MqttMessage> = _incomingMessages.asSharedFlow()
+
+    // Subscribed topics tracking
+    private val subscribedTopics = mutableSetOf<String>()
+
+    override suspend fun connect(config: MqttConnectionConfig): Result<Unit> = withContext(Dispatchers.IO) {
+        try {
+            if (_connectionState.value == MqttConnectionState.CONNECTED) {
+                return@withContext Result.success(Unit)
+            }
+
+            _connectionState.value = MqttConnectionState.CONNECTING
+            currentConfig = config
+
+            // Create MQTT client
+            mqttClient = MqttAndroidClient(context, config.brokerUrl, config.clientId)
+
+            // Set up callback
+            mqttClient?.setCallback(object : MqttCallback {
+                override fun connectionLost(cause: Throwable?) {
+                    Timber.w(cause, "MQTT connection lost")
+                    _connectionState.value = MqttConnectionState.DISCONNECTED
+
+                    // Attempt reconnection if enabled
+                    if (config.automaticReconnect && cause != null) {
+                        repositoryScope.launch {
+                            _connectionState.value = MqttConnectionState.RECONNECTING
+                            reconnect()
+                        }
+                    }
+                }
+
+                override fun messageArrived(topic: String, message: PahoMqttMessage) {
+                    val mqttMessage = MqttMessage(
+                        topic = topic,
+                        payload = String(message.payload),
+                        qos = message.qos,
+                        retained = message.isRetained,
+                        isSentByMe = false
+                    )
+                    _incomingMessages.tryEmit(mqttMessage)
+                    Timber.d("Message received on topic: $topic")
+                }
+
+                override fun deliveryComplete(token: IMqttDeliveryToken) {
+                    Timber.d("Message delivery complete")
+                }
+            })
+
+            // Set up connection options
+            val connectOptions = MqttConnectOptions().apply {
+                isCleanSession = config.cleanSession
+                keepAliveInterval = config.keepAliveInterval
+                connectionTimeout = config.connectionTimeout
+                isAutomaticReconnect = false // We handle reconnection manually
+
+                config.username?.let { userName = it }
+                config.password?.let { password = it.toCharArray() }
+            }
+
+            // Connect
+            suspendCancellableCoroutine<Unit> { continuation ->
+                mqttClient?.connect(
+                    connectOptions,
+                    null,
+                    object : IMqttActionListener {
+                        override fun onSuccess(asyncActionToken: IMqttToken?) {
+                            _connectionState.value = MqttConnectionState.CONNECTED
+                            Timber.i("MQTT connected successfully")
+                            continuation.resume(Unit)
+                        }
+
+                        override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
+                            _connectionState.value = MqttConnectionState.ERROR
+                            Timber.e(exception, "MQTT connection failed")
+                            continuation.resumeWithException(
+                                exception ?: Exception("Unknown connection error")
+                            )
+                        }
+                    }
+                )
+
+                continuation.invokeOnCancellation {
+                    mqttClient?.disconnect()
+                }
+            }
+
+            Result.success(Unit)
+        } catch (e: Exception) {
+            _connectionState.value = MqttConnectionState.ERROR
+            Timber.e(e, "Error connecting to MQTT broker")
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun disconnect(): Result<Unit> = withContext(Dispatchers.IO) {
+        try {
+            mqttClient?.let { client ->
+                if (client.isConnected) {
+                    suspendCancellableCoroutine<Unit> { continuation ->
+                        client.disconnect(
+                            null,
+                            object : IMqttActionListener {
+                                override fun onSuccess(asyncActionToken: IMqttToken?) {
+                                    _connectionState.value = MqttConnectionState.DISCONNECTED
+                                    subscribedTopics.clear()
+                                    Timber.i("MQTT disconnected successfully")
+                                    continuation.resume(Unit)
+                                }
+
+                                override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
+                                    _connectionState.value = MqttConnectionState.ERROR
+                                    Timber.e(exception, "MQTT disconnection failed")
+                                    continuation.resumeWithException(
+                                        exception ?: Exception("Unknown disconnection error")
+                                    )
+                                }
+                            }
+                        )
+                    }
+                } else {
+                    _connectionState.value = MqttConnectionState.DISCONNECTED
+                    subscribedTopics.clear()
+                }
+            }
+
+            mqttClient = null
+            currentConfig = null
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Timber.e(e, "Error disconnecting from MQTT broker")
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun subscribe(topic: String, qos: Int): Result<Unit> = withContext(Dispatchers.IO) {
+        try {
+            val client = mqttClient ?: return@withContext Result.failure(
+                IllegalStateException("Not connected to MQTT broker")
+            )
+
+            if (!client.isConnected) {
+                return@withContext Result.failure(
+                    IllegalStateException("Not connected to MQTT broker")
+                )
+            }
+
+            suspendCancellableCoroutine<Unit> { continuation ->
+                client.subscribe(
+                    topic,
+                    qos,
+                    null,
+                    object : IMqttActionListener {
+                        override fun onSuccess(asyncActionToken: IMqttToken?) {
+                            subscribedTopics.add(topic)
+                            Timber.i("Successfully subscribed to topic: $topic")
+                            continuation.resume(Unit)
+                        }
+
+                        override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
+                            Timber.e(exception, "Failed to subscribe to topic: $topic")
+                            continuation.resumeWithException(
+                                exception ?: Exception("Unknown subscription error")
+                            )
+                        }
+                    }
+                )
+            }
+
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Timber.e(e, "Error subscribing to topic: $topic")
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun subscribe(topics: List<String>, qos: Int): Result<Unit> {
+        return try {
+            topics.forEach { topic ->
+                val result = subscribe(topic, qos)
+                if (result.isFailure) {
+                    return result
+                }
+            }
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun unsubscribe(topic: String): Result<Unit> = withContext(Dispatchers.IO) {
+        try {
+            val client = mqttClient ?: return@withContext Result.failure(
+                IllegalStateException("Not connected to MQTT broker")
+            )
+
+            if (!client.isConnected) {
+                return@withContext Result.failure(
+                    IllegalStateException("Not connected to MQTT broker")
+                )
+            }
+
+            suspendCancellableCoroutine<Unit> { continuation ->
+                client.unsubscribe(
+                    topic,
+                    null,
+                    object : IMqttActionListener {
+                        override fun onSuccess(asyncActionToken: IMqttToken?) {
+                            subscribedTopics.remove(topic)
+                            Timber.i("Successfully unsubscribed from topic: $topic")
+                            continuation.resume(Unit)
+                        }
+
+                        override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
+                            Timber.e(exception, "Failed to unsubscribe from topic: $topic")
+                            continuation.resumeWithException(
+                                exception ?: Exception("Unknown unsubscription error")
+                            )
+                        }
+                    }
+                )
+            }
+
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Timber.e(e, "Error unsubscribing from topic: $topic")
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun unsubscribe(topics: List<String>): Result<Unit> {
+        return try {
+            topics.forEach { topic ->
+                val result = unsubscribe(topic)
+                if (result.isFailure) {
+                    return result
+                }
+            }
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun publish(
+        topic: String,
+        message: String,
+        qos: Int,
+        retained: Boolean
+    ): Result<Unit> = withContext(Dispatchers.IO) {
+        try {
+            val client = mqttClient ?: return@withContext Result.failure(
+                IllegalStateException("Not connected to MQTT broker")
+            )
+
+            if (!client.isConnected) {
+                return@withContext Result.failure(
+                    IllegalStateException("Not connected to MQTT broker")
+                )
+            }
+
+            val mqttMessage = PahoMqttMessage(message.toByteArray()).apply {
+                this.qos = qos
+                isRetained = retained
+            }
+
+            suspendCancellableCoroutine<Unit> { continuation ->
+                client.publish(
+                    topic,
+                    mqttMessage,
+                    null,
+                    object : IMqttActionListener {
+                        override fun onSuccess(asyncActionToken: IMqttToken?) {
+                            Timber.i("Successfully published message to topic: $topic")
+                            continuation.resume(Unit)
+                        }
+
+                        override fun onFailure(asyncActionToken: IMqttToken?, exception: Throwable?) {
+                            Timber.e(exception, "Failed to publish message to topic: $topic")
+                            continuation.resumeWithException(
+                                exception ?: Exception("Unknown publish error")
+                            )
+                        }
+                    }
+                )
+            }
+
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Timber.e(e, "Error publishing message to topic: $topic")
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun publish(message: MqttMessage): Result<Unit> {
+        return publish(
+            topic = message.topic,
+            message = message.payload,
+            qos = message.qos,
+            retained = message.retained
+        )
+    }
+
+    override fun getCurrentConnectionState(): MqttConnectionState {
+        return _connectionState.value
+    }
+
+    override fun isConnected(): Boolean {
+        return _connectionState.value == MqttConnectionState.CONNECTED
+    }
+
+    override fun getSubscribedTopics(): List<String> {
+        return subscribedTopics.toList()
+    }
+
+    private suspend fun reconnect() {
+        currentConfig?.let { config ->
+            try {
+                kotlinx.coroutines.delay(5000) // Wait 5 seconds before reconnecting
+                connect(config)
+            } catch (e: Exception) {
+                Timber.e(e, "Reconnection failed")
+                _connectionState.value = MqttConnectionState.ERROR
+            }
+        }
+    }
+}

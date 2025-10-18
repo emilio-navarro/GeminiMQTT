@@ -1,0 +1,187 @@
+[versions]
+# App Configuration
+applicationId = "life.munay.mqtt"
+appName = "MQTT"
+compileSdk = "36"
+minSdk = "33"
+targetSdk = "36"
+jvmTarget = "18"
+
+# App Version
+versionMajor = "1"
+versionMinor = "0"
+versionPatch = "0"
+versionBuild = "0"
+
+# Namespaces
+namespace = "life.munay.mqtt"
+namespaceCore = "life.munay.core"
+namespaceMaps = "life.munay.maps"
+namespaceAbout = "life.munay.about"
+namespaceMqtt = "life.munay.maps"
+
+# Build Tools & Kotlin
+agp = "8.13.0"
+kotlin = "2.2.20"
+compose-compiler = "1.5.11"
+ktlint = "11.5.1"
+
+# AndroidX Core & Lifecycle
+coreKtx = "1.17.0"
+androidx-lifecycle = "2.9.4"
+lifecycleRuntimeKtx = "2.9.4"
+androidx-multidex = "2.0.1"
+appcompat = "1.7.1"
+
+# Compose
+composeBom = "2025.09.00"
+activityCompose = "1.11.0"
+
+# Navigation & UI
+androidx-navigation = "2.9.4"
+androidx-window = "1.4.0"
+splash = "1.0.1"
+material = "1.12.0"
+maps-compose = "4.3.3"
+google-maps = "19.0.0"
+google-maps-utils = "2.3.0"
+
+# Dependency Injection
+hilt = "2.57.1"
+androidx-hilt = "1.3.0"
+
+# Testing
+junit = "4.13.2"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+mockito-core = "5.5.0"
+mockito-kotlin = "5.1.0"
+kotlinx-coroutines-test = "1.10.2"
+androidx-arch-core-testing = "2.2.0"
+mockk = "1.13.8"
+robolectric = "4.11.1"
+
+# Async & Coroutines
+kotlin-coroutines = "1.10.2"
+
+# Networking
+okhttp = "4.12.0"
+
+# Image Loading
+coil = "3.3.0"
+
+# Logging
+timber = "5.0.1"
+
+# Database
+realm = "10.19.0"
+
+# JSON Parsing
+google-gson = "2.13.2"
+
+material3 = "1.4.0"
+appcompatVersion = "1.7.1"
+materialVersion = "1.13.0"
+runtime = "1.9.3"
+
+[libraries]
+# AndroidX Core & Fundamentals
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "androidx-multidex" }
+androidx-splash = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
+androidx-window = { module = "androidx.window:window", version.ref = "androidx-window" }
+
+# AndroidX Lifecycle
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewModelCompose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+
+# Compose BOM & Core
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+# Compose UI
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-animation = { module = "androidx.compose.animation:animation" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
+androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-compose-material-window = { module = "androidx.compose.material3:material3-window-size-class" }
+
+# Navigation
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+
+# Dependency Injection - Hilt
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+androidx-hilt-ext-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "androidx-hilt" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx-hilt" }
+
+# Kotlin & Coroutines
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
+
+# Networking
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+
+# Image Loading - Coil
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+
+# Logging
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+
+# Database
+realm-plugin = { module = "io.realm:realm-gradle-plugin", version.ref = "realm" }
+
+# Google
+google-gson = { module = "com.google.code.gson:gson", version.ref = "google-gson" }
+google-android-material = { module = "com.google.android.material:material", version.ref = "material" }
+googlemaps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps-compose" }
+googlemaps-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "google-maps" }
+googlemaps-maps-utils = { module = "com.google.maps.android:android-maps-utils", version.ref = "google-maps-utils" }
+
+# Testing - Unit Tests
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito-core" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
+androidx-arch-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "androidx-arch-core-testing" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+
+# Testing - UI & Integration
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+androidx-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
+
+[plugins]
+# Android & Build Tools
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+android-test = { id = "com.android.test", version.ref = "agp" }
+
+# Kotlin
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+
+# Dependency Injection
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+# Code Quality
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
