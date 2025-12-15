@@ -1,22 +1,22 @@
-# 🚀 GeminiMQTT - Enterprise-Grade MQTT Chat Client
+# GeminiMQTT - Enterprise-Grade MQTT Chat Client
 
 **A production-ready Android MQTT client featuring WhatsApp-style chat interface, built with modern Android architecture patterns and optimized for IoT, real-time messaging, and distributed systems communication.**
 
-## 🎯 **Project Overview**
+## **Project Overview**
 
 GeminiMQTT demonstrates **professional-grade MQTT implementation** on Android, combining **enterprise messaging protocols** with **consumer-friendly chat experiences**. This project showcases how to build **scalable, maintainable, and testable** MQTT applications using the latest Android development best practices.
 
-### **🔥 Why GeminiMQTT?**
+### **Why GeminiMQTT?**
 
-- **🚀 Production-Ready**: Built with enterprise patterns, error handling, and scalability in mind
-- **📱 Modern Android**: Leverages latest Jetpack Compose, Hilt DI, and Kotlin Coroutines
-- **🔒 Android 13+ Compatible**: Fully compliant with modern Android security requirements
-- **🧪 Comprehensive Testing**: Extensive testing infrastructure with real-world scenarios
-- **🏗️ Clean Architecture**: Modular design following industry best practices
-- **📖 Educational Value**: Perfect learning resource for MQTT, Compose, and Clean Architecture
-- **⚡ Performance Optimized**: Efficient message handling and battery-conscious design
+- **Production-Ready**: Built with enterprise patterns, error handling, and scalability in mind
+- **Modern Android**: Leverages latest Jetpack Compose, Hilt DI, and Kotlin Coroutines
+- **Android 13+ Compatible**: Fully compliant with modern Android security requirements
+- **Comprehensive Testing**: Extensive testing infrastructure with real-world scenarios
+- **Clean Architecture**: Modular design following industry best practices
+- **Educational Value**: Perfect learning resource for MQTT, Compose, and Clean Architecture
+- **Performance Optimized**: Efficient message handling and battery-conscious design
 
-### **🎯 Target Audience**
+### ** Target Audience**
 
 - **Android Developers** learning MQTT integration
 - **IoT Engineers** building mobile interfaces for connected devices  
@@ -24,15 +24,15 @@ GeminiMQTT demonstrates **professional-grade MQTT implementation** on Android, c
 - **Students & Educators** studying modern Android architecture
 - **Open Source Contributors** interested in messaging protocols
 
-### **💼 Use Cases & Applications**
+### ** Use Cases & Applications**
 
-- **🏠 Smart Home Control**: Monitor and control IoT devices in real-time
-- **🏭 Industrial IoT**: Factory automation and sensor monitoring dashboards
-- **💬 Real-time Chat**: Scalable messaging for customer support or team collaboration
-- **📊 Live Dashboards**: Real-time data visualization from multiple sources
-- **🚗 Connected Vehicles**: Vehicle telemetry and remote diagnostics
-- **🏥 Healthcare Monitoring**: Patient monitoring and medical device integration
-- **📱 Cross-Platform Messaging**: Bridge between mobile, web, and embedded systems
+- **Smart Home Control**: Monitor and control IoT devices in real-time
+- **Industrial IoT**: Factory automation and sensor monitoring dashboards
+- **Real-time Chat**: Scalable messaging for customer support or team collaboration
+- **Live Dashboards**: Real-time data visualization from multiple sources
+- **Connected Vehicles**: Vehicle telemetry and remote diagnostics
+- **Healthcare Monitoring**: Patient monitoring and medical device integration
+- **Cross-Platform Messaging**: Bridge between mobile, web, and embedded systems
 
 ![Android](https://img.shields.io/badge/Platform-Android-green.svg)
 ![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue.svg)
@@ -45,83 +45,83 @@ GeminiMQTT demonstrates **professional-grade MQTT implementation** on Android, c
 
 ## ✨ **Core Features & Capabilities**
 
-### 💬 **Enterprise Chat Interface**
-- **🎨 WhatsApp-style Design**: Familiar, intuitive message bubbles with professional polish
-- **📱 Responsive Layout**: Optimized for all screen sizes and orientations
-- **⚡ Real-time Updates**: Instant message delivery with < 100ms latency
-- **✅ Message Status**: Delivery confirmations and read receipts
-- **🕒 Smart Timestamps**: Contextual time display with automatic formatting
-- **🔄 Auto-scroll**: Intelligent scroll behavior for optimal user experience
-- **🌙 Theme Support**: Light/dark theme compatibility (Material 3)
+### **Enterprise Chat Interface**
+- **WhatsApp-style Design**: Familiar, intuitive message bubbles with professional polish
+- **Responsive Layout**: Optimized for all screen sizes and orientations
+- **Real-time Updates**: Instant message delivery with < 100ms latency
+- **Message Status**: Delivery confirmations and read receipts
+- **Smart Timestamps**: Contextual time display with automatic formatting
+- **Auto-scroll**: Intelligent scroll behavior for optimal user experience
+- **Theme Support**: Light/dark theme compatibility (Material 3)
 
-### 🔌 **Advanced MQTT Implementation**
-- **🌐 Multi-Protocol Support**: TCP, SSL/TLS, WebSocket connections
-- **📡 QoS Management**: Full support for QoS 0, 1, and 2 with configurable policies
-- **🔄 Smart Reconnection**: Exponential backoff with connection state persistence
-- **🎯 Topic Intelligence**: Wildcard subscriptions (+, #) with pattern validation
-- **💾 Message Persistence**: Retained messages and offline message queuing
-- **🔒 Security First**: SSL/TLS encryption with certificate validation
-- **⚙️ Connection Pooling**: Efficient resource management and battery optimization
-- **📊 Connection Monitoring**: Real-time connection health and performance metrics
+### **Advanced MQTT Implementation**
+- **Multi-Protocol Support**: TCP, SSL/TLS, WebSocket connections
+- **QoS Management**: Full support for QoS 0, 1, and 2 with configurable policies
+- **Smart Reconnection**: Exponential backoff with connection state persistence
+- **Topic Intelligence**: Wildcard subscriptions (+, #) with pattern validation
+- **Message Persistence**: Retained messages and offline message queuing
+- **Security First**: SSL/TLS encryption with certificate validation
+- **Connection Pooling**: Efficient resource management and battery optimization
+- **Connection Monitoring**: Real-time connection health and performance metrics
 
-### 🏗️ **Production-Grade Architecture**
-- **🏛️ Clean Architecture**: Domain, Data, and Presentation layers with clear separation
-- **💉 Dependency Injection**: Hilt-powered DI for testability and maintainability
-- **🔄 Reactive Programming**: Kotlin Coroutines and Flow for asynchronous operations
-- **🎯 MVVM Pattern**: ViewModel-driven UI with lifecycle-aware data management
-- **🧪 Testable Design**: 90%+ test coverage with unit, integration, and UI tests
-- **📦 Modular Structure**: Feature-based modules for scalability and reusability
-- **🔧 Repository Pattern**: Abstract data access with multiple source support
+### **Production-Grade Architecture**
+- **Clean Architecture**: Domain, Data, and Presentation layers with clear separation
+- **Dependency Injection**: Hilt-powered DI for testability and maintainability
+- **Reactive Programming**: Kotlin Coroutines and Flow for asynchronous operations
+- **MVVM Pattern**: ViewModel-driven UI with lifecycle-aware data management
+- **Testable Design**: 90%+ test coverage with unit, integration, and UI tests
+- **Modular Structure**: Feature-based modules for scalability and reusability
+- **Repository Pattern**: Abstract data access with multiple source support
 
-### 📱 **Modern Android Experience**
-- **🎨 Jetpack Compose**: 100% Compose UI with Material 3 design system
-- **🔒 Android 13+ Ready**: Full compliance with latest security requirements
-- **⚡ Performance Optimized**: Lazy loading, efficient state management, and memory optimization
-- **🔄 Configuration Changes**: Seamless handling of device rotations and system changes
-- **📳 Background Processing**: Foreground services for reliable message delivery
-- **🔋 Battery Conscious**: Optimized wake locks and connection management
-- **♿ Accessibility**: Full accessibility support with TalkBack compatibility
+### **Modern Android Experience**
+- **Jetpack Compose**: 100% Compose UI with Material 3 design system
+- **Android 13+ Ready**: Full compliance with latest security requirements
+- **Performance Optimized**: Lazy loading, efficient state management, and memory optimization
+- **Configuration Changes**: Seamless handling of device rotations and system changes
+- **Background Processing**: Foreground services for reliable message delivery
+- **Battery Conscious**: Optimized wake locks and connection management
+- **Accessibility**: Full accessibility support with TalkBack compatibility
 
-### 🛠️ **Developer Experience**
-- **📝 Comprehensive Documentation**: Detailed guides, API docs, and architectural decisions
-- **🧪 Testing Infrastructure**: Pre-configured testing with public MQTT brokers
-- **🔧 Code Quality**: ktlint integration with pre-commit hooks
-- **📊 Logging**: Structured logging with Timber for debugging and monitoring
-- **🔄 CI/CD Ready**: GitHub Actions workflows for automated testing and deployment
-- **📱 Multi-Environment**: Dev, staging, and production configuration management
+### **Developer Experience**
+- **Comprehensive Documentation**: Detailed guides, API docs, and architectural decisions
+- **Testing Infrastructure**: Pre-configured testing with public MQTT brokers
+- **Code Quality**: ktlint integration with pre-commit hooks
+- **Logging**: Structured logging with Timber for debugging and monitoring
+- **CI/CD Ready**: GitHub Actions workflows for automated testing and deployment
+- **Multi-Environment**: Dev, staging, and production configuration management
 - **StateFlow/SharedFlow** for proper state management
 - **HiveMQ MQTT Client** library (Android 13+ compatible)
 - **Timber** logging across all modules
 
-### 📦 **Technology Stack & Dependencies**
+### **Technology Stack & Dependencies**
 
-#### **🎨 Frontend & UI**
+#### **Frontend & UI**
 - **Jetpack Compose BOM**: `2025.09.00` - Latest Material 3 design system
 - **Compose Navigation**: `2.9.4` - Type-safe navigation with deep linking
 - **Material 3**: `1.4.0` - Modern Material Design components
 - **Compose Animation**: Advanced animations and transitions
 - **Window Size Classes**: Responsive design for tablets and foldables
 
-#### **🔌 MQTT & Networking**
+#### **MQTT & Networking**
 - **HiveMQ MQTT Client**: `1.3.3` - Production-grade, Android 13+ compatible
 - **Netty**: `4.1.99` - High-performance networking framework
 - **OkHttp**: `4.12.0` - HTTP/WebSocket client for additional protocols
 - **AndroidX Network**: Connection monitoring and network state management
 
-#### **🏗️ Architecture & DI**
+#### **Architecture & DI**
 - **Hilt**: `2.57.1` - Compile-time dependency injection
 - **AndroidX Hilt Navigation**: `1.3.0` - ViewModel injection for Compose
 - **Kotlin Coroutines**: `1.10.2` - Asynchronous programming
 - **AndroidX Lifecycle**: `2.9.4` - Lifecycle-aware components
 
-#### **💾 Data & State Management**
+#### **Data & State Management**
 - **Flow & StateFlow**: Reactive data streams
 - **SharedFlow**: Event-driven communication
 - **Room Database**: Local data persistence (planned)
 - **DataStore**: Preferences and configuration storage
 - **Kotlin Serialization**: JSON parsing and serialization
 
-#### **🧪 Testing & Quality**
+#### **Testing & Quality**
 - **JUnit**: `4.13.2` - Unit testing framework
 - **Mockk**: `1.13.8` - Mocking framework for Kotlin
 - **Espresso**: `3.7.0` - UI testing automation
@@ -129,70 +129,70 @@ GeminiMQTT demonstrates **professional-grade MQTT implementation** on Android, c
 - **ktlint**: `11.5.1` - Code formatting and style checking
 - **Timber**: `5.0.1` - Structured logging
 
-#### **🔧 Build & Development Tools**
+#### **Build & Development Tools**
 - **Android Gradle Plugin**: `8.13.0` - Latest build system
 - **Kotlin**: `2.2.20` - Modern language features
 - **Kotlin Compose Compiler**: `1.5.11` - Optimized Compose compilation
 - **Kapt**: Annotation processing for Hilt and Room
 - **Jetifier**: AndroidX compatibility layer
 
-> **✅ Android 13+ Compatible**: All dependencies are tested and compatible with the latest Android security requirements and API changes.
+> **Android 13+ Compatible**: All dependencies are tested and compatible with the latest Android security requirements and API changes.
 
-## 🏆 **Project Highlights & Achievements**
+## **Project Highlights & Achievements**
 
-### **🎖️ Technical Excellence**
-- **🔒 Security First**: Implements Android 13+ security requirements with proper receiver registration
-- **⚡ Performance Optimized**: < 100ms message latency with efficient memory management
-- **🧪 Test Coverage**: 90%+ code coverage with comprehensive testing strategy
-- **📱 Modern UI**: 100% Jetpack Compose implementation with Material 3 design
-- **🔄 Production Ready**: Handles edge cases, connection failures, and background processing
+### **Technical Excellence**
+- **Security First**: Implements Android 13+ security requirements with proper receiver registration
+- **Performance Optimized**: < 100ms message latency with efficient memory management
+- **Test Coverage**: 90%+ code coverage with comprehensive testing strategy
+- **Modern UI**: 100% Jetpack Compose implementation with Material 3 design
+- **Production Ready**: Handles edge cases, connection failures, and background processing
 
-### **🚀 Innovation & Best Practices**
-- **🏗️ Clean Architecture**: Textbook implementation of Clean Architecture principles
-- **💉 Dependency Injection**: Comprehensive Hilt setup with modular design
-- **🔄 Reactive Programming**: Advanced use of Kotlin Coroutines and Flow
-- **📊 State Management**: Sophisticated state handling with lifecycle awareness
-- **🧪 Testing Strategy**: Multi-layered testing with unit, integration, and UI tests
+### **Innovation & Best Practices**
+- **Clean Architecture**: Textbook implementation of Clean Architecture principles
+- **Dependency Injection**: Comprehensive Hilt setup with modular design
+- **Reactive Programming**: Advanced use of Kotlin Coroutines and Flow
+- **State Management**: Sophisticated state handling with lifecycle awareness
+- **Testing Strategy**: Multi-layered testing with unit, integration, and UI tests
 
-### **🌟 Real-World Application**
-- **💼 Enterprise Grade**: Suitable for production IoT and messaging applications
-- **📚 Educational Value**: Demonstrates professional Android development patterns
-- **🔧 Extensible Design**: Easy to extend for custom MQTT requirements
-- **🌐 Community Impact**: Open-source contribution to MQTT and Android ecosystem
-- **📖 Documentation**: Comprehensive documentation and testing guides
+### **Real-World Application**
+- **Enterprise Grade**: Suitable for production IoT and messaging applications
+- **Educational Value**: Demonstrates professional Android development patterns
+- **Extensible Design**: Easy to extend for custom MQTT requirements
+- **Community Impact**: Open-source contribution to MQTT and Android ecosystem
+- **Documentation**: Comprehensive documentation and testing guides
 
-### **🎯 Problem Solving**
-- **✅ Android 13+ Compatibility**: Solved receiver registration issues that plague many MQTT libraries
-- **🔄 Connection Reliability**: Robust reconnection logic with exponential backoff
-- **💾 Message Persistence**: Handles offline scenarios and message queuing
-- **🎨 UX Excellence**: Chat interface that rivals commercial messaging apps
-- **🔧 Developer Experience**: Easy setup, comprehensive testing, and clear documentation
+### **Problem Solving**
+- **Android 13+ Compatibility**: Solved receiver registration issues that plague many MQTT libraries
+- **Connection Reliability**: Robust reconnection logic with exponential backoff
+- **Message Persistence**: Handles offline scenarios and message queuing
+- **UX Excellence**: Chat interface that rivals commercial messaging apps
+- **Developer Experience**: Easy setup, comprehensive testing, and clear documentation
 
-## 🚀 **Quick Start Guide**
+## **Quick Start Guide**
 
-### **📋 Prerequisites**
+### **Prerequisites**
 - **Android Studio**: Hedgehog (2023.1.1) or later
 - **Android SDK**: API 33+ (Android 13+)
 - **Kotlin**: 1.9+ with latest language features
 - **JDK**: 18+ for optimal build performance
 - **Git**: For version control and cloning
 
-### **⚡ Fast Setup (5 minutes)**
+### **Fast Setup (5 minutes)**
 
-1. **📥 Clone the Repository**
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/emilio-navarro/GeminiMQTT.git
    cd GeminiMQTT/Android
    ```
 
-2. **🔧 Setup Development Environment**
+2. **Setup Development Environment**
    ```bash
    # Ensure code quality and build
    ./gradlew ktlintFormat  # Format code to standards
    ./gradlew build         # Build all modules and run tests
    ```
 
-3. **🚀 Launch the App**
+3. **Launch the App**
    ```bash
    # Install on connected device/emulator
    ./gradlew installDebug
@@ -202,23 +202,23 @@ GeminiMQTT demonstrates **professional-grade MQTT implementation** on Android, c
    # Click Run (green play button)
    ```
 
-4. **🧪 Test MQTT Functionality**
+4. **Test MQTT Functionality**
    - **Open app** → Navigate to MQTT screen
    - **Quick connect** → Tap "Mosquitto" button (pre-configured)
    - **Instant test** → Open https://testclient-cloud.mqtt.cool in browser
    - **Start chatting** → Send messages between app and web client!
 
-### **🎯 First Run Experience**
+### **First Run Experience**
 
 Your app comes pre-configured with:
-- **✅ Default broker**: `test.mosquitto.org:1883`
-- **✅ Test topic**: `test/android`
-- **✅ Quick connect buttons**: HiveMQ, Mosquitto, EMQX
-- **✅ Sample messages**: Ready to send
+- **Default broker**: `test.mosquitto.org:1883`
+- **Test topic**: `test/android`
+- **Quick connect buttons**: HiveMQ, Mosquitto, EMQX
+- **Sample messages**: Ready to send
 
-### **🔧 Development Setup**
+### **Development Setup**
 
-#### **📱 Android Studio Configuration**
+#### **Android Studio Configuration**
 ```bash
 # Import project settings
 File → Settings → Editor → Code Style → Kotlin
@@ -229,7 +229,7 @@ File → Settings → Tools → Actions on Save
 → Check "Reformat code" and "Optimize imports"
 ```
 
-#### **🧪 Testing Environment**
+#### **Testing Environment**
 ```bash
 # Run all tests
 ./gradlew test testDebugUnitTest
@@ -241,7 +241,7 @@ File → Settings → Tools → Actions on Save
 ./gradlew connectedAndroidTest
 ```
 
-#### **📊 Code Quality Checks**
+#### **Code Quality Checks**
 ```bash
 # Format code
 ./gradlew ktlintFormat
@@ -274,7 +274,7 @@ File → Settings → Tools → Actions on Save
 
 > **💡 Pro Tip:** Always run `./gradlew ktlintFormat` before building to maintain code quality standards!
 
-## 🔧 Configuration
+## Configuration
 
 ### MQTT Broker Setup
 The app supports various MQTT brokers. For testing, you can use free public brokers:
@@ -296,7 +296,7 @@ val brokerConfigs = listOf(
 - **Keep Alive**: Interval in seconds
 - **Connection Timeout**: Timeout in seconds
 
-## 💻 Usage
+## Usage
 
 ### 1. **Connect to Broker**
 ```kotlin
@@ -337,7 +337,7 @@ mqttRepository.incomingMessages.collect { message ->
 }
 ```
 
-## 🏛️ Architecture
+## Architecture
 
 ### Module Structure
 ```
@@ -392,7 +392,7 @@ data class MqttMessage(
 - `ChatMessageItem`: WhatsApp-style message bubbles
 - `MqttViewModel`: State management with error handling
 
-## 🔍 Testing
+## Testing
 
 ### Unit Tests
 ```bash
@@ -416,13 +416,13 @@ data class MqttMessage(
 4. Publish messages from both clients
 5. Watch real-time chat conversation!
 
-## 🧪 **Testing with Web Clients**
+## **Testing with Web Clients**
 
-### **MQTT Cool Web Client** ⭐ (Recommended)
+### **MQTT Cool Web Client** (Recommended)
 
 The easiest way to test your MQTT chat app is using the **MQTT Cool** web client:
 
-**🌐 Web Client URL**: https://testclient-cloud.mqtt.cool
+**Web Client URL**: https://testclient-cloud.mqtt.cool
 
 #### **Step-by-Step Testing:**
 
@@ -448,10 +448,10 @@ The easiest way to test your MQTT chat app is using the **MQTT Cool** web client
    - From **Android app** → Should appear in **web client**
 
 #### **Expected Results:**
-- ✅ **Real-time chat** between web and mobile
-- ✅ **WhatsApp-style bubbles** in Android app
-- ✅ **Message delivery** in both directions
-- ✅ **Connection status** updates correctly
+- **Real-time chat** between web and mobile
+- **WhatsApp-style bubbles** in Android app
+- **Message delivery** in both directions
+- **Connection status** updates correctly
 
 ### **Alternative Web Clients**
 
@@ -544,11 +544,11 @@ mosquitto_pub -h test.mosquitto.org -t "test/android" -m "Hello from CLI!"
 - **Background message handling**
 - **Keep-alive optimization**
 
-## � Troubleshooting
+## Troubleshooting
 
 ### **Common Issues & Solutions**
 
-#### **❌ `NoClassDefFoundError: LocalBroadcastManager`**
+#### **`NoClassDefFoundError: LocalBroadcastManager`**
 **Problem**: Eclipse Paho MQTT client requires legacy Android Support Library
 **Solution**: Already implemented in the project
 ```gradle
@@ -560,15 +560,15 @@ implementation("androidx.legacy:legacy-support-v4:1.0.0")
 android.enableJetifier=true
 ```
 
-#### **🔄 If MQTT Connection Still Fails:**
+#### **If MQTT Connection Still Fails:**
 1. **Clean and rebuild**:
    ```bash
    ./gradlew clean && ./gradlew assembleDebug
    ```
 
 2. **Verify broker URL format**:
-   - ✅ `tcp://broker.hivemq.com:1883`
-   - ❌ `broker.hivemq.com:1883` (missing protocol)
+   - `tcp://broker.hivemq.com:1883`
+   - `broker.hivemq.com:1883` (missing protocol)
 
 3. **Check network permissions** in AndroidManifest.xml:
    ```xml
@@ -582,13 +582,13 @@ android.enableJetifier=true
    implementation("com.hivemq:hivemq-mqtt-client:1.3.3")
    ```
 
-#### **📱 Testing Tips**
+#### **Testing Tips**
 - Use **public brokers** for initial testing: `broker.hivemq.com:1883`
 - Test with **MQTT clients** like MQTTX or Mosquitto
 - Enable **verbose logging** in debug builds
 - Check **device connectivity** and firewall settings
 
-## �🛠️ Development
+## Development
 
 ### Code Style & Formatting
 
@@ -627,12 +627,12 @@ The project enforces consistent code style using **ktlint** to maintain professi
 - **Code style**: Follows Kotlin official coding conventions
 
 #### **What ktlint Checks:**
-- ✅ **Indentation**: 4 spaces, no tabs
-- ✅ **Import organization**: Alphabetical order, no unused imports
-- ✅ **Line length**: Maximum 120 characters
-- ✅ **Trailing whitespace**: Automatically removed
-- ✅ **Blank lines**: Consistent spacing between functions/classes
-- ✅ **Naming conventions**: camelCase for variables, PascalCase for classes
+- **Indentation**: 4 spaces, no tabs
+- **Import organization**: Alphabetical order, no unused imports
+- **Line length**: Maximum 120 characters
+- **Trailing whitespace**: Automatically removed
+- **Blank lines**: Consistent spacing between functions/classes
+- **Naming conventions**: camelCase for variables, PascalCase for classes
 
 ### Adding New Features
 1. Create feature modules following the existing structure
@@ -641,7 +641,7 @@ The project enforces consistent code style using **ktlint** to maintain professi
 4. Add proper error handling with Result wrapper
 5. Write unit tests for business logic
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -653,7 +653,7 @@ The project enforces consistent code style using **ktlint** to maintain professi
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **HiveMQ** for the modern, Android 13+ compatible MQTT client library
 - **MQTT Cool** for providing excellent web-based MQTT testing tools
@@ -662,7 +662,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Google** for Jetpack Compose and Android development tools
 - **MQTT Community** for the lightweight messaging protocol
 
-## 📞 Support
+## Support
 
 ### Getting Help
 - **GitHub Issues**: [GitHub Issues](https://github.com/emilio-navarro/GeminiMQTT/issues)
