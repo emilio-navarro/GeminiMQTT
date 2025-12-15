@@ -1,6 +1,6 @@
-# 🚀 Testing MQTT Repository with Free Online Brokers
+# Testing MQTT Repository with Free Online Brokers
 
-## 📡 Popular Free MQTT Brokers
+## Popular Free MQTT Brokers
 
 ### 1. **HiveMQ Public Broker** (Recommended)
 - **URL**: `tcp://broker.hivemq.com:1883`
@@ -25,7 +25,7 @@
 - **Features**: Good for IoT testing
 - **Limitations**: Registration required for heavy usage
 
-## 🧪 Testing Instructions
+## Testing Instructions
 
 ### Step 1: Connect to Broker
 1. Open the MQTT screen in your app
@@ -67,7 +67,7 @@ Use online MQTT clients to test communication:
 - No installation required
 - Perfect for quick testing
 
-## 📋 Test Scenarios
+## Test Scenarios
 
 ### Basic Functionality Test
 1. **Connect** → Status should show "CONNECTED"
@@ -90,7 +90,7 @@ Use online MQTT clients to test communication:
 2. Publish with QoS 1 (at least once) 
 3. Compare delivery reliability
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Connection Issues
 - **Check URL format**: Must start with `tcp://` or `ssl://`
@@ -108,7 +108,7 @@ Use online MQTT clients to test communication:
 - **Connection stability**: Public brokers may disconnect idle connections
 - **Topic cleanup**: Unsubscribe from unused topics
 
-## 🔒 Security Notes
+## Security Notes
 
 ### Public Brokers
 - **No authentication** required
@@ -121,7 +121,7 @@ Use online MQTT clients to test communication:
 - Implement TLS/SSL encryption
 - Use proper access control and topic permissions
 
-## 📱 App Features to Test
+## App Features to Test
 
 ### Connection Management
 - [x] Connect to broker
@@ -148,7 +148,7 @@ Use online MQTT clients to test communication:
 - [x] Clear message history
 - [x] Topic management
 
-## 🎯 Example Test Flow
+## Example Test Flow
 
 ```
 1. Start App → Open MQTT Screen
