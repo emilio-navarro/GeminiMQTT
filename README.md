@@ -43,7 +43,7 @@ GeminiMQTT demonstrates **professional-grade MQTT implementation** on Android, c
 ![Testing](https://img.shields.io/badge/Testing-Comprehensive-green.svg)
 ![Android13](https://img.shields.io/badge/Android%2013%2B-Compatible-brightgreen.svg)
 
-## ✨ **Core Features & Capabilities**
+## **Core Features & Capabilities**
 
 ### **Enterprise Chat Interface**
 - **WhatsApp-style Design**: Familiar, intuitive message bubbles with professional polish
